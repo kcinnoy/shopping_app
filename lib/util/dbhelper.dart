@@ -6,6 +6,17 @@ class DbHelper {
   final int version = 1;
   Database? db;
 
+  Future testDb() async {
+    db = await openDb();
+    await db!.execute('INSERT INTO lists VALUES (0, "Fruit", 2)');
+    await db!.execute('''INSERT INTO items VALUES (0, 0, "Apples",'
+        '"2 Kg", "Better if they are green")''');
+    List lists = await db!.rawQuery('select * from lists');
+    List items = await db!.rawQuery('select * from items');
+    print(lists[0].toString());
+    print(items[0].toString());
+  }
+
   Future<Database> openDb() async {
     if (db == null) {
       db = await openDatabase(join(await getDatabasesPath(), 'shopping.db'),
