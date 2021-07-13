@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import '../models/list_items.dart';
+import '../models/shopping_list.dart';
 
 class DbHelper {
   final int version = 1;
@@ -8,9 +10,9 @@ class DbHelper {
 
   Future testDb() async {
     db = await openDb();
-    await db!.execute('INSERT INTO lists VALUES (0, "Fruit", 2)');
+    await db!.execute('INSERT INTO lists VALUES (1, "Fruit", 2)');
     await db!.execute(
-        'INSERT INTO items VALUES (0, 0, "Apples", "2 Kg", "Better if they are green")');
+        'INSERT INTO items VALUES (1, 0, "Apples", "2 Kg", "Better if they are green")');
     List lists = await db!.rawQuery('select * from lists');
     List items = await db!.rawQuery('select * from items');
     print(lists[0].toString());
