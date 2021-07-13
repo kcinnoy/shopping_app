@@ -31,4 +31,22 @@ class DbHelper {
     }
     return db!;
   }
+
+  Future<int> insertList(ShoppingList list) async {
+    int id = await this.db!.insert(
+          'lists',
+          list.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+    return id;
+  }
+
+  Future<int> insertItem(ListItem item) async {
+    int id = await db!.insert(
+      'items',
+      item.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    return id;
+  }
 }
