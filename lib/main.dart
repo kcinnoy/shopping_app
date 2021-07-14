@@ -3,6 +3,7 @@ import './util/dbhelper.dart';
 import './models/list_items.dart';
 import './models/shopping_list.dart';
 import './ui/items_screen.dart';
+import './ui/shopping_list_dialog.dart';
 
 void main() {
   runApp(MyApp());
